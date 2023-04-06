@@ -33,3 +33,29 @@ function autoNumberCreate(n) {
     result = (pickedNumbers.join(''))
     return result;
 }
+
+
+// // 컴퓨터숫자와 입력받은 숫자 비교하는 함수
+function compare(comNum, inputNum) {
+    // 컴퓨터가 만든 숫자 배열로 전환
+    let arrComNum = String(comNum).split('');
+    // 입력받은 숫자 배열로 전환
+    let arrInputNum = String(inputNum).split('');
+    // S와 B를 카운트할 변수 선언 및 초기화
+    let countS = 0;
+    let countB = 0;
+    // 컴퓨터숫자 배열길이만큼 반복하면서
+    // 컴퓨터숫자 배열[0]자리 숫자와 입력숫자 배열[0]자리 숫자 비교
+    // 같으면 s, 틀리면 b를 stringSB
+    for (let i = 0; i < arrComNum.length; i++) {
+        (arrComNum[i] === arrInputNum[i]) ? countS++ : countB++;
+    }
+    // 출력 조건문
+    if (countS === 0) {            // S가 없으면 B만 출력
+        return `${countB}B`;
+    } else if (countB === 0) {    // B가 없으면 S만 출력
+        return `${countS}S`;
+    } else {                            // 외 모두 출력
+        return `${countB}B${countS}S`;
+    }
+}

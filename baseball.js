@@ -35,6 +35,25 @@ function autoNumberCreate(n) {
 }
 
 
+let count = 1;   // 도전횟수 카운트 변수 선언 및 초기값 할당
+console.log(`컴퓨터가 숫자를 생성하였습니다. 답을 맞춰보세요! (${comNum})`)
+rl.setPrompt(`${count}번째 시도 : `);
+rl.prompt();
+rl.on(`line`, (input) => {
+    if (input === comNum) {                      // 입력받은 값이 비교할 값과 같은 경우
+        console.log(compare(comNum, input));
+        rl.setPrompt(`${count}번만에 맞히셨습니다.\n게임을 종료합니다.`);
+        rl.prompt();
+        rl.close();
+    } else {                                                 // 입력받은 값이 비교할 값과 다른 경우
+        count++;
+        console.log(compare(comNum, input));
+        rl.setPrompt(`${count}번째 시도 : `);
+        rl.prompt();
+    }
+});
+
+
 // // 컴퓨터숫자와 입력받은 숫자 비교하는 함수
 function compare(comNum, inputNum) {
     // 컴퓨터가 만든 숫자 배열로 전환
